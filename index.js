@@ -10,14 +10,19 @@ const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyX4o5Y2qAt2v
 
 app.post("/enviar-email", async (req, res) => {
   try {
-    // Repasse o POST para o Apps Script
     const resposta = await fetch(GOOGLE_SCRIPT_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(req.body),
     });
-    const dados = await resposta.json();
-    res.json(dados);
+    const text = await resposta.text();
+    let json;
+    try {
+      json = JSON.parse(text);
+    } catch {
+      json = { raw: text };
+    }
+    res.json(json);
   } catch (err) {
     res.status(500).json({ erro: "Falha ao encaminhar o e-mail", detalhe: err.message });
   }
