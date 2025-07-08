@@ -6,7 +6,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxxTRmfy99BhXLGEK3ECDaFCASUxce3OxGEtYu3XGLF67fGdIAzUTJOXRtaTqez9GHD/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzaNu9deI4XyKzcSnxsdsQm44akon8sbMa7udn_DOkFAJcEg-OEvUpHLNpFlrOLlvH0/exec";
 
 app.post("/enviar-email", async (req, res) => {
   try {
